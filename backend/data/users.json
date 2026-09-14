@@ -1,0 +1,11 @@
+[
+  {
+    "id": "945a9d24-fd8a-4004-b5f3-1ccab4a865c0",
+    "name": "Atlasmiles Admin",
+    "email": "admin@atlasmiles.com",
+    "phone": "",
+    "passwordHash": "$2a$10$kMNOXf.FO4PzQA/zZJUWyuYgwSUFvrK6GbqRUHzpmGzT22m.d/xyq",
+    "role": "admin",
+    "createdAt": "2026-09-14T09:57:38.791Z"
+  }
+]

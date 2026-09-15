@@ -5,18 +5,53 @@
     "destination": "Goa",
     "price": 12999,
     "duration": "4 Days / 3 Nights",
-    "dates": ["2026-11-14", "2026-11-21", "2026-12-05"],
+    "dates": [
+      "2026-11-14",
+      "2026-11-21",
+      "2026-12-05"
+    ],
     "seatsAvailable": 18,
     "shortDescription": "Sun, sand, and seafood — a relaxed getaway across North and South Goa.",
-    "highlights": ["Beach hopping", "Sunset cruise", "Local seafood trail", "Fort Aguada visit"],
-    "itinerary": [
-      { "day": 1, "title": "Arrival & North Goa", "description": "Check-in, evening at Baga Beach, welcome dinner." },
-      { "day": 2, "title": "Water Sports & Fort Aguada", "description": "Optional water sports, Fort Aguada, Calangute market." },
-      { "day": 3, "title": "South Goa & Sunset Cruise", "description": "Palolem Beach, sunset river cruise with live music." },
-      { "day": 4, "title": "Departure", "description": "Breakfast and check-out." }
+    "highlights": [
+      "Beach hopping",
+      "Sunset cruise",
+      "Local seafood trail",
+      "Fort Aguada visit"
     ],
-    "inclusions": ["3-star hotel stay", "Daily breakfast", "Airport transfers", "Sightseeing as per itinerary"],
-    "exclusions": ["Flights/train tickets", "Lunch & dinner (except welcome dinner)", "Personal expenses", "Entry tickets not mentioned"],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival & North Goa",
+        "description": "Check-in, evening at Baga Beach, welcome dinner."
+      },
+      {
+        "day": 2,
+        "title": "Water Sports & Fort Aguada",
+        "description": "Optional water sports, Fort Aguada, Calangute market."
+      },
+      {
+        "day": 3,
+        "title": "South Goa & Sunset Cruise",
+        "description": "Palolem Beach, sunset river cruise with live music."
+      },
+      {
+        "day": 4,
+        "title": "Departure",
+        "description": "Breakfast and check-out."
+      }
+    ],
+    "inclusions": [
+      "3-star hotel stay",
+      "Daily breakfast",
+      "Airport transfers",
+      "Sightseeing as per itinerary"
+    ],
+    "exclusions": [
+      "Flights/train tickets",
+      "Lunch & dinner (except welcome dinner)",
+      "Personal expenses",
+      "Entry tickets not mentioned"
+    ],
     "images": [
       "https://picsum.photos/seed/goa1/800/500",
       "https://picsum.photos/seed/goa2/800/500"
@@ -28,19 +63,58 @@
     "destination": "Manali",
     "price": 15499,
     "duration": "5 Days / 4 Nights",
-    "dates": ["2026-11-20", "2026-12-10", "2026-12-24"],
+    "dates": [
+      "2026-11-20",
+      "2026-12-10",
+      "2026-12-24"
+    ],
     "seatsAvailable": 12,
     "shortDescription": "Snow-capped peaks, riverside cafes, and a day trip to Solang Valley.",
-    "highlights": ["Solang Valley", "Old Manali cafes", "Hadimba Temple", "Optional snow activities"],
-    "itinerary": [
-      { "day": 1, "title": "Arrival in Manali", "description": "Check-in, leisure evening at Mall Road." },
-      { "day": 2, "title": "Solang Valley", "description": "Full-day trip to Solang Valley, optional paragliding/skiing." },
-      { "day": 3, "title": "Old Manali & Hadimba Temple", "description": "Cafe hopping in Old Manali, Hadimba Devi Temple." },
-      { "day": 4, "title": "Local Sightseeing", "description": "Vashisht hot springs, local village walk." },
-      { "day": 5, "title": "Departure", "description": "Breakfast and check-out." }
+    "highlights": [
+      "Solang Valley",
+      "Old Manali cafes",
+      "Hadimba Temple",
+      "Optional snow activities"
     ],
-    "inclusions": ["4-star hotel stay", "Daily breakfast & dinner", "Private cab for sightseeing", "All toll/parking charges"],
-    "exclusions": ["Flights/train tickets", "Lunch", "Adventure activity charges", "Personal expenses"],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival in Manali",
+        "description": "Check-in, leisure evening at Mall Road."
+      },
+      {
+        "day": 2,
+        "title": "Solang Valley",
+        "description": "Full-day trip to Solang Valley, optional paragliding/skiing."
+      },
+      {
+        "day": 3,
+        "title": "Old Manali & Hadimba Temple",
+        "description": "Cafe hopping in Old Manali, Hadimba Devi Temple."
+      },
+      {
+        "day": 4,
+        "title": "Local Sightseeing",
+        "description": "Vashisht hot springs, local village walk."
+      },
+      {
+        "day": 5,
+        "title": "Departure",
+        "description": "Breakfast and check-out."
+      }
+    ],
+    "inclusions": [
+      "4-star hotel stay",
+      "Daily breakfast & dinner",
+      "Private cab for sightseeing",
+      "All toll/parking charges"
+    ],
+    "exclusions": [
+      "Flights/train tickets",
+      "Lunch",
+      "Adventure activity charges",
+      "Personal expenses"
+    ],
     "images": [
       "https://picsum.photos/seed/manali1/800/500",
       "https://picsum.photos/seed/manali2/800/500"
@@ -52,20 +126,62 @@
     "destination": "Kerala",
     "price": 21999,
     "duration": "6 Days / 5 Nights",
-    "dates": ["2026-11-25", "2026-12-15"],
+    "dates": [
+      "2026-11-25",
+      "2026-12-15"
+    ],
     "seatsAvailable": 10,
     "shortDescription": "Houseboat stay in Alleppey and tea-garden views in Munnar.",
-    "highlights": ["Alleppey houseboat", "Munnar tea gardens", "Spice plantation tour", "Kathakali show"],
-    "itinerary": [
-      { "day": 1, "title": "Arrival in Kochi", "description": "Check-in, evening Kathakali dance show." },
-      { "day": 2, "title": "Drive to Munnar", "description": "Scenic drive, spice plantation stop." },
-      { "day": 3, "title": "Munnar Sightseeing", "description": "Tea museum, Eravikulam National Park, viewpoints." },
-      { "day": 4, "title": "Drive to Alleppey", "description": "Check-in to houseboat, backwater cruise, onboard dinner." },
-      { "day": 5, "title": "Alleppey to Kochi", "description": "Check-out from houseboat, Fort Kochi walking tour." },
-      { "day": 6, "title": "Departure", "description": "Breakfast and check-out." }
+    "highlights": [
+      "Alleppey houseboat",
+      "Munnar tea gardens",
+      "Spice plantation tour",
+      "Kathakali show"
     ],
-    "inclusions": ["Hotel + 1 night houseboat stay", "Daily breakfast", "All transfers", "Sightseeing as per itinerary"],
-    "exclusions": ["Flights/train tickets", "Lunch & most dinners", "Entry tickets not mentioned", "Personal expenses"],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival in Kochi",
+        "description": "Check-in, evening Kathakali dance show."
+      },
+      {
+        "day": 2,
+        "title": "Drive to Munnar",
+        "description": "Scenic drive, spice plantation stop."
+      },
+      {
+        "day": 3,
+        "title": "Munnar Sightseeing",
+        "description": "Tea museum, Eravikulam National Park, viewpoints."
+      },
+      {
+        "day": 4,
+        "title": "Drive to Alleppey",
+        "description": "Check-in to houseboat, backwater cruise, onboard dinner."
+      },
+      {
+        "day": 5,
+        "title": "Alleppey to Kochi",
+        "description": "Check-out from houseboat, Fort Kochi walking tour."
+      },
+      {
+        "day": 6,
+        "title": "Departure",
+        "description": "Breakfast and check-out."
+      }
+    ],
+    "inclusions": [
+      "Hotel + 1 night houseboat stay",
+      "Daily breakfast",
+      "All transfers",
+      "Sightseeing as per itinerary"
+    ],
+    "exclusions": [
+      "Flights/train tickets",
+      "Lunch & most dinners",
+      "Entry tickets not mentioned",
+      "Personal expenses"
+    ],
     "images": [
       "https://picsum.photos/seed/kerala1/800/500",
       "https://picsum.photos/seed/kerala2/800/500"
@@ -77,24 +193,126 @@
     "destination": "Rajasthan",
     "price": 24999,
     "duration": "7 Days / 6 Nights",
-    "dates": ["2026-12-01", "2026-12-20"],
+    "dates": [
+      "2026-12-01",
+      "2026-12-20"
+    ],
     "seatsAvailable": 15,
     "shortDescription": "Forts, palaces, and desert nights across Jaipur, Jodhpur, and Jaisalmer.",
-    "highlights": ["Amber Fort", "Mehrangarh Fort", "Jaisalmer desert camp", "Camel safari"],
-    "itinerary": [
-      { "day": 1, "title": "Arrival in Jaipur", "description": "Check-in, evening at local bazaar." },
-      { "day": 2, "title": "Jaipur Sightseeing", "description": "Amber Fort, City Palace, Hawa Mahal." },
-      { "day": 3, "title": "Drive to Jodhpur", "description": "Check-in, evening at Mehrangarh Fort." },
-      { "day": 4, "title": "Jodhpur to Jaisalmer", "description": "Scenic drive, evening leisure." },
-      { "day": 5, "title": "Jaisalmer Fort & Desert Camp", "description": "Fort visit, camel safari, desert camp overnight." },
-      { "day": 6, "title": "Return to Jaisalmer", "description": "Local sightseeing, shopping." },
-      { "day": 7, "title": "Departure", "description": "Breakfast and check-out." }
+    "highlights": [
+      "Amber Fort",
+      "Mehrangarh Fort",
+      "Jaisalmer desert camp",
+      "Camel safari"
     ],
-    "inclusions": ["Hotel + 1 night desert camp", "Daily breakfast & dinner", "Private cab for entire trip", "Camel safari"],
-    "exclusions": ["Flights/train tickets", "Lunch", "Entry tickets not mentioned", "Personal expenses"],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival in Jaipur",
+        "description": "Check-in, evening at local bazaar."
+      },
+      {
+        "day": 2,
+        "title": "Jaipur Sightseeing",
+        "description": "Amber Fort, City Palace, Hawa Mahal."
+      },
+      {
+        "day": 3,
+        "title": "Drive to Jodhpur",
+        "description": "Check-in, evening at Mehrangarh Fort."
+      },
+      {
+        "day": 4,
+        "title": "Jodhpur to Jaisalmer",
+        "description": "Scenic drive, evening leisure."
+      },
+      {
+        "day": 5,
+        "title": "Jaisalmer Fort & Desert Camp",
+        "description": "Fort visit, camel safari, desert camp overnight."
+      },
+      {
+        "day": 6,
+        "title": "Return to Jaisalmer",
+        "description": "Local sightseeing, shopping."
+      },
+      {
+        "day": 7,
+        "title": "Departure",
+        "description": "Breakfast and check-out."
+      }
+    ],
+    "inclusions": [
+      "Hotel + 1 night desert camp",
+      "Daily breakfast & dinner",
+      "Private cab for entire trip",
+      "Camel safari"
+    ],
+    "exclusions": [
+      "Flights/train tickets",
+      "Lunch",
+      "Entry tickets not mentioned",
+      "Personal expenses"
+    ],
     "images": [
       "https://picsum.photos/seed/raj1/800/500",
       "https://picsum.photos/seed/raj2/800/500"
+    ]
+  },
+  {
+    "id": "test-trip-c0b1dd",
+    "name": "Test Trip",
+    "destination": "TestCity",
+    "price": 9999,
+    "duration": "2D/1N",
+    "dates": [
+      "2026-12-01"
+    ],
+    "seatsAvailable": 5,
+    "shortDescription": "",
+    "highlights": [],
+    "itinerary": [],
+    "inclusions": [],
+    "exclusions": [],
+    "images": [
+      "https://picsum.photos/seed/test-trip-c0b1dd/800/500"
+    ]
+  },
+  {
+    "id": "andaman-island-hopper-a76063",
+    "name": "Andaman Island Hopper",
+    "destination": "Andaman",
+    "price": 28999,
+    "duration": "5D/4N",
+    "dates": [
+      "2026-12-05",
+      "2026-12-20"
+    ],
+    "seatsAvailable": 10,
+    "shortDescription": "",
+    "highlights": [
+      "Scuba diving",
+      "Radhanagar Beach",
+      "Cellular Jail"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival",
+        "description": "Check-in and beach evening"
+      }
+    ],
+    "inclusions": [
+      "Hotel stay",
+      "Breakfast",
+      "Ferry transfers"
+    ],
+    "exclusions": [
+      "Flights",
+      "Lunch"
+    ],
+    "images": [
+      "https://picsum.photos/seed/andaman1/800/500"
     ]
   }
 ]

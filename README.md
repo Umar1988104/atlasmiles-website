@@ -1,16 +1,19 @@
-# Atlasmiles Website — v0.1, v0.2 + v0.3
+# Atlasmiles Website — v0.1 through v0.5
 
-This package contains:
-- **v0.1** — Public pages (Home, About, Destinations, Packages, Package Details) using test package data.
-- **v0.2** — Customer registration (auto-logs you in), login, forgot/reset password, and profile management.
-- **v0.3 (new)** — Full booking flow: pick a date and traveller count, sandbox/test-mode payment, "My Bookings" with cancel, and a separate **Admin login**.
+## This package contains
+- **v0.1** — Public pages (Home, About, Destinations, Packages, Package Details) using test data.
+- **v0.2** — Registration (auto-login), login, forgot/reset password, profile management.
+- **v0.3** — Full booking flow with sandbox payment, "My Bookings" with cancel, Admin/Traveller login toggle.
+- **v0.4** — A real Admin Dashboard: manage packages (add/edit/delete/duplicate, full control over images/highlights/inclusions/itinerary), manage bookings (status, trip status with announcements), manage users (disable/enable), dark sidebar layout.
+- **v0.5** — Public Gallery, review system (submit → admin approves → public), trip status tracking, in-app notifications, wishlist (save packages), printable receipts, richer Home page (search, trust badges, How It Works, FAQ).
+- **Batch 1 (new)** — Per-traveller booking details with ID proof, reviews restricted to completed trips, cancellation policy, WhatsApp inquiry button, trip countdown.
 
-The full admin dashboard (managing packages/bookings/users) is **not** built yet — that's v0.4. Logging in as admin right now takes you to a placeholder page confirming the role-based login works.
-
-**What's new in this update:**
-- Full visual redesign — bolder ink-navy-to-coral-and-gold theme, richer content (stats bar, testimonials, newsletter banner on Home), and much more detailed, boxed package pages with a sticky booking sidebar, timeline itinerary, and icon checklists.
-- Login page now has a **Traveller / Admin** toggle.
-- The full booking → payment → confirmation flow (v0.3).
+## What's new in this update
+- **Per-traveller details at booking:** for each traveller, name, age, ID proof (Aadhaar/Passport/Voter ID/Driving License), and optional phone/email are now collected — required for real hotel check-ins. ID numbers are **masked in the admin view** (e.g. `••••••••9012`) for basic privacy.
+- **Reviews are now restricted** to travellers whose trip has actually been marked "Completed" by admin — no more reviews from people who never took the trip.
+- **Cancellation policy** is now shown on every package page.
+- **Click-to-WhatsApp button** on package pages — set your real number in `frontend/.env` (`VITE_WHATSAPP_NUMBER`).
+- **Trip countdown** on My Bookings — "5 days to go!" for upcoming confirmed trips.
 
 ---
 
@@ -58,12 +61,16 @@ Open the printed URL (usually http://localhost:5173) in your browser.
 
 ## 4. What You Can Test Now
 
-- Everything from v0.1/v0.2 (browsing, register, login, profile)
-- **Book a trip:** open any package → Book Now → pick a date and traveller count → Continue to Payment → Pay Now (sandbox — no real charge) → see your confirmed booking
-- **My Bookings:** view and cancel bookings from the navbar
-- **Admin login:** on the Login page, click the "Admin" toggle, and use the email/password the backend printed in Window 1 on first run. You'll land on a placeholder Admin Dashboard page — this confirms the role-based login works; the real dashboard is v0.4.
+- Everything from v0.1–v0.5 (browsing, register, login, booking, payment, admin panel, reviews, gallery, wishlist, receipts, notifications)
+- **Traveller details:** when booking, fill in each traveller's name, age, and ID proof — try changing the traveller count and watch the form add/remove rows
+- **Review gating:** try reviewing a package you haven't completed a trip for — it'll now say only completed-trip travellers can review. Have admin mark a booking's trip status as "Completed," then try again.
+- **Cancellation policy:** scroll down any package page to see it
+- **WhatsApp button:** on a package page, click "Ask on WhatsApp" (update `VITE_WHATSAPP_NUMBER` in `frontend/.env` to your real number first, or it'll use a placeholder)
+- **Trip countdown:** book and pay for a trip, then check My Bookings for the "X days to go" badge
+- **Admin — masked ID numbers:** in Admin → Bookings, click the traveller count on any row to expand and see traveller details with ID numbers masked (e.g. `••••••••9012`)
+- Search, wishlist, receipts, rich admin package form, admin dashboard, gallery, reviews, notifications — all from the previous update, still here
 
-**Important:** change the default admin password (via Profile, after logging in as admin) before this ever goes anywhere near a real deployment. It's fine to leave as-is for local testing.
+**Important:** change the default admin password (via Profile → Security, after logging in as admin) before this goes anywhere near a real deployment.
 
 ---
 
@@ -73,49 +80,45 @@ Open the printed URL (usually http://localhost:5173) in your browser.
 
 ---
 
-## 6. Pushing to GitHub — First Time (you haven't done this yet)
+## 6. Pushing This Update to GitHub
 
-Do this from the `atlasmiles-website` folder in Command Prompt (servers can be stopped for this):
-
-**Step 1 — Turn this folder into a Git project**
+You've already got the repo set up and pushed once before — this is just the "every version after the first" flow:
 ```
-cd atlasmiles-website && git init
+git add . && git commit -m "Batch 1: traveller ID details, review gating, cancellation policy, WhatsApp button, trip countdown" && git push
 ```
-
-**Step 2 — Stage and commit everything**
+Optional but recommended — tag it so you can jump back to this exact point later:
 ```
-git add . && git commit -m "v0.3: booking + payment flow, admin login, full redesign"
+git tag batch1 && git push --tags
 ```
 
-**Step 3 — Create the GitHub repo**
-Go to https://github.com/new in your browser. Give it a name like `atlasmiles-website`. Leave "Add a README" **unchecked** — this project already has one. Click **Create repository**. GitHub will show you a page with a URL like `https://github.com/yourusername/atlasmiles-website.git` — copy it.
-
-**Step 4 — Connect and push**
+If you ever need the full first-time walkthrough again (e.g. on a new machine), it's:
+```
+git init && git add . && git commit -m "message"
+```
+then create a repo at https://github.com/new, copy its URL, and:
 ```
 git branch -M main && git remote add origin PASTE_YOUR_GITHUB_URL_HERE && git push -u origin main
 ```
-If GitHub asks you to sign in, follow its prompt (browser popup or a device code) — this only happens the first time.
-
-**Step 5 — Confirm**
-Refresh the GitHub repo page in your browser. You should see all your files there.
 
 ---
 
 ## 7. Every Version After This
 
-Once the repo exists, pushing an update is just:
+Same recipe every time:
 ```
-git add . && git commit -m "v0.4: admin dashboard" && git push
+git add . && git commit -m "describe what changed" && git push
 ```
-(swap the message for whatever that version actually added — do this after every completed version, as discussed.)
-
-Optional but recommended — tag each version so you can jump back to it later:
+And tag it if it's a meaningful checkpoint:
 ```
-git tag v0.3 && git push --tags
+git tag v0.6 && git push --tags
 ```
 
 ---
 
-## 8. What's Next (v0.4)
+## 8. What's Next
 
-The real admin dashboard: package management, booking management, payment overview, and user management — replacing today's placeholder admin page.
+**Batch 2 (Discovery & Conversion)** is next: an illustrated animated journey map per package, trip-type and budget filters, package comparison, "you might also like," and a coupon/group-discount system.
+
+**Batch 3 (Growth & Admin Polish)** after that: seasonal deal packages, PDF itinerary download, packing checklist, admin analytics + low-seats alerts, CSV export, and social share.
+
+Still deferred from the original plan either way: real image/file uploads (currently URL-based), and eventually swapping the local JSON data store for a real free-tier Postgres database (Supabase/Neon) before this goes anywhere near a real public launch.

@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const { readJSON, writeJSON } = require("./db");
 const { requireAuth } = require("./middleware/authMiddleware");
+const { addNotification } = require("./notificationHelper");
 
 const router = express.Router();
 
@@ -45,11 +46,17 @@ router.post("/register", (req, res) => {
     phone: phone || "",
     passwordHash,
     role: "customer",
+    disabled: false,
+    emailNotifications: true,
+    emergencyContactName: "",
+    emergencyContactPhone: "",
+    savedPackages: [],
     createdAt: new Date().toISOString()
   };
 
   users.push(newUser);
   writeJSON("users", users);
+  addNotification(newUser.id, "Welcome to Atlasmiles! Start by browsing our packages.");
 
   // Log the user in immediately after registering — no reason to make them
   // fill out the login form again right after they just filled out this one.
@@ -74,6 +81,10 @@ router.post("/login", (req, res) => {
     return res.status(401).json({ error: "Invalid email or password." });
   }
 
+  if (user.disabled) {
+    return res.status(403).json({ error: "This account has been disabled. Please contact support." });
+  }
+
   // loginAs lets the login screen offer a "Traveller" / "Admin" choice.
   // We check it against the account's actual role so one login form can't
   // be used to casually try admin access on a normal account.
@@ -96,15 +107,18 @@ router.get("/profile", requireAuth, (req, res) => {
   return res.json({ user: publicUser(user) });
 });
 
-// PUT /api/auth/profile  (update name/phone)
+// PUT /api/auth/profile  (update name/phone/preferences)
 router.put("/profile", requireAuth, (req, res) => {
-  const { name, phone } = req.body;
+  const { name, phone, emailNotifications, emergencyContactName, emergencyContactPhone } = req.body;
   const users = readJSON("users");
   const idx = users.findIndex(u => u.id === req.userId);
   if (idx === -1) return res.status(404).json({ error: "User not found." });
 
   if (name) users[idx].name = name;
   if (phone !== undefined) users[idx].phone = phone;
+  if (emailNotifications !== undefined) users[idx].emailNotifications = !!emailNotifications;
+  if (emergencyContactName !== undefined) users[idx].emergencyContactName = emergencyContactName;
+  if (emergencyContactPhone !== undefined) users[idx].emergencyContactPhone = emergencyContactPhone;
   writeJSON("users", users);
 
   return res.json({ message: "Profile updated.", user: publicUser(users[idx]) });
@@ -132,6 +146,24 @@ router.put("/profile/password", requireAuth, (req, res) => {
   writeJSON("users", users);
 
   return res.json({ message: "Password changed successfully." });
+});
+
+// POST /api/auth/saved-packages/:packageId — toggle save/unsave (wishlist)
+router.post("/saved-packages/:packageId", requireAuth, (req, res) => {
+  const users = readJSON("users");
+  const idx = users.findIndex(u => u.id === req.userId);
+  if (idx === -1) return res.status(404).json({ error: "User not found." });
+
+  const saved = users[idx].savedPackages || [];
+  const packageId = req.params.packageId;
+  const alreadySaved = saved.includes(packageId);
+
+  users[idx].savedPackages = alreadySaved
+    ? saved.filter(id => id !== packageId)
+    : [...saved, packageId];
+
+  writeJSON("users", users);
+  res.json({ savedPackages: users[idx].savedPackages, saved: !alreadySaved });
 });
 
 // POST /api/auth/forgot-password

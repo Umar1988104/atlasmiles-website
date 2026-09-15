@@ -21,6 +21,11 @@ function seedAdminIfNeeded() {
     phone: "",
     passwordHash: bcrypt.hashSync(DEFAULT_ADMIN_PASSWORD, 10),
     role: "admin",
+    disabled: false,
+    emailNotifications: true,
+    emergencyContactName: "",
+    emergencyContactPhone: "",
+    savedPackages: [],
     createdAt: new Date().toISOString()
   };
 

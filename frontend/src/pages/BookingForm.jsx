@@ -4,6 +4,9 @@ import { FiArrowLeft } from "react-icons/fi";
 import { api } from "../api";
 import { useAuth } from "../context/AuthContext";
 
+const ID_PROOF_TYPES = ["Aadhaar", "Passport", "Voter ID", "Driving License"];
+const BLANK_TRAVELLER = { name: "", age: "", idProofType: "Aadhaar", idProofNumber: "", phone: "", email: "" };
+
 export default function BookingForm() {
   const { packageId } = useParams();
   const [pkg, setPkg] = useState(null);
@@ -18,6 +21,7 @@ export default function BookingForm() {
     leadName: user?.name || "",
     leadPhone: user?.phone || ""
   });
+  const [travellerDetails, setTravellerDetails] = useState([{ ...BLANK_TRAVELLER, name: user?.name || "" }]);
 
   useEffect(() => {
     api.getPackage(packageId).then((data) => {
@@ -26,12 +30,38 @@ export default function BookingForm() {
     }).catch(() => setError("This package could not be found."));
   }, [packageId]);
 
+  // Keep the travellerDetails array in sync with the traveller count —
+  // add blank rows when the count goes up, trim from the end when it goes down.
+  function handleTravellerCountChange(value) {
+    const count = Math.max(1, Number(value) || 1);
+    setForm({ ...form, travellers: count });
+    setTravellerDetails((prev) => {
+      const next = [...prev];
+      while (next.length < count) next.push({ ...BLANK_TRAVELLER });
+      while (next.length > count) next.pop();
+      return next;
+    });
+  }
+
+  function updateTraveller(index, field, value) {
+    setTravellerDetails((prev) => {
+      const next = [...prev];
+      next[index] = { ...next[index], [field]: value };
+      return next;
+    });
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
     setLoading(true);
     try {
-      const data = await api.createBooking({ packageId, ...form, travellers: Number(form.travellers) });
+      const data = await api.createBooking({
+        packageId,
+        ...form,
+        travellers: Number(form.travellers),
+        travellerDetails
+      });
       navigate(`/payment/${data.booking.id}`);
     } catch (err) {
       setError(err.message);
@@ -72,16 +102,38 @@ export default function BookingForm() {
               min="1"
               max={pkg.seatsAvailable}
               value={form.travellers}
-              onChange={(e) => setForm({ ...form, travellers: e.target.value })}
+              onChange={(e) => handleTravellerCountChange(e.target.value)}
               required
             />
           </label>
-          <label>Lead Traveller Name
+          <label>Booking Contact Name
             <input value={form.leadName} onChange={(e) => setForm({ ...form, leadName: e.target.value })} required />
           </label>
-          <label>Lead Traveller Phone
+          <label>Booking Contact Phone
             <input value={form.leadPhone} onChange={(e) => setForm({ ...form, leadPhone: e.target.value })} required />
           </label>
+
+          <div className="traveller-details-block">
+            <h4>Traveller Details</h4>
+            <p className="muted" style={{ marginBottom: "0.8rem" }}>Required for hotel check-in and travel ID verification.</p>
+            {travellerDetails.map((t, idx) => (
+              <div className="traveller-card" key={idx}>
+                <p className="traveller-card-title">Traveller {idx + 1}</p>
+                <div className="admin-inline-form">
+                  <label>Full Name<input value={t.name} onChange={(e) => updateTraveller(idx, "name", e.target.value)} required /></label>
+                  <label>Age<input type="number" min="0" max="120" value={t.age} onChange={(e) => updateTraveller(idx, "age", e.target.value)} required /></label>
+                  <label>ID Proof Type
+                    <select value={t.idProofType} onChange={(e) => updateTraveller(idx, "idProofType", e.target.value)}>
+                      {ID_PROOF_TYPES.map((type) => <option key={type} value={type}>{type}</option>)}
+                    </select>
+                  </label>
+                  <label>ID Proof Number<input value={t.idProofNumber} onChange={(e) => updateTraveller(idx, "idProofNumber", e.target.value)} required /></label>
+                  <label>Phone (optional)<input value={t.phone} onChange={(e) => updateTraveller(idx, "phone", e.target.value)} /></label>
+                  <label>Email (optional)<input type="email" value={t.email} onChange={(e) => updateTraveller(idx, "email", e.target.value)} /></label>
+                </div>
+              </div>
+            ))}
+          </div>
 
           <div className="payment-summary">
             <div className="payment-summary-row"><span>Price per person</span><span>₹{pkg.price.toLocaleString("en-IN")}</span></div>

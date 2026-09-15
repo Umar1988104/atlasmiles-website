@@ -1,11 +1,16 @@
 [
   {
-    "id": "945a9d24-fd8a-4004-b5f3-1ccab4a865c0",
+    "id": "f7fe6724-02bd-48af-8c72-f96655bb760c",
     "name": "Atlasmiles Admin",
     "email": "admin@atlasmiles.com",
     "phone": "",
-    "passwordHash": "$2a$10$kMNOXf.FO4PzQA/zZJUWyuYgwSUFvrK6GbqRUHzpmGzT22m.d/xyq",
+    "passwordHash": "$2a$10$mWQ3AGwl.Mwh9sSUkzt44e3SkOv104SS.azSx1jUyjlcpFAgCOJVW",
     "role": "admin",
-    "createdAt": "2026-09-14T09:57:38.791Z"
+    "disabled": false,
+    "emailNotifications": true,
+    "emergencyContactName": "",
+    "emergencyContactPhone": "",
+    "savedPackages": [],
+    "createdAt": "2026-09-15T09:34:46.827Z"
   }
 ]

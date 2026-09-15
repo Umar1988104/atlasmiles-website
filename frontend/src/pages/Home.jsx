@@ -1,14 +1,22 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { FiMapPin, FiShield, FiHeadphones, FiStar } from "react-icons/fi";
+import { Link, useNavigate } from "react-router-dom";
+import { FiMapPin, FiShield, FiHeadphones, FiStar, FiSearch, FiLock, FiCheckCircle, FiRefreshCw } from "react-icons/fi";
 import { api } from "../api";
 import { useAuth } from "../context/AuthContext";
 import RouteMap from "../components/RouteMap";
+import FaqItem from "../components/FaqItem";
 
 const TESTIMONIALS = [
   { name: "Aditi Rao", initials: "AR", text: "Booking was so smooth — the itinerary matched exactly what was promised. Our Kerala trip felt handled from start to finish.", rating: 5 },
   { name: "Rohan Mehta", initials: "RM", text: "Went with the Rajasthan Royal Trail with my family. Every hotel and transfer was exactly on time. Would book again.", rating: 5 },
   { name: "Sneha Kulkarni", initials: "SK", text: "Loved how transparent the pricing was — no surprise charges at checkout. The Manali trip highlights were spot on.", rating: 4 }
+];
+
+const FAQS = [
+  { q: "How does booking actually work?", a: "Pick a package, choose your date and number of travellers, review the total, and pay securely online. You'll get an instant confirmation with a transaction ID, and the booking shows up in \"My Bookings\" right away." },
+  { q: "Is payment on this site secure?", a: "Yes — payments are processed through a dedicated payment step, and Atlasmiles never stores your card details directly. We're currently running in sandbox/test mode while the site is in development." },
+  { q: "Can I cancel a booking after paying?", a: "Yes, from \"My Bookings\" any time before your trip. Cancellation follows our standard policy — refunds for paid bookings are currently handled manually by our team while automatic refunds are being built." },
+  { q: "Do I need an account to browse packages?", a: "No — browsing destinations and packages is open to everyone. You only need an account to save packages to your wishlist, book a trip, or leave a review." }
 ];
 
 function Stars({ count }) {
@@ -18,7 +26,9 @@ function Stars({ count }) {
 export default function Home() {
   const [packages, setPackages] = useState([]);
   const [error, setError] = useState("");
+  const [searchInput, setSearchInput] = useState("");
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     api
@@ -27,6 +37,11 @@ export default function Home() {
       .catch(() => setError("Couldn't load featured packages right now."));
   }, []);
 
+  function handleSearch(e) {
+    e.preventDefault();
+    navigate(`/packages?search=${encodeURIComponent(searchInput)}`);
+  }
+
   return (
     <div>
       <section className="hero">
@@ -34,6 +49,15 @@ export default function Home() {
           <span className="hero-eyebrow">Handpicked trips, booked online</span>
           <h1>Discover trips worth remembering.</h1>
           <p>From backwater sunsets to desert nights under the stars — Atlasmiles plans it, you just show up.</p>
+          <form className="hero-search" onSubmit={handleSearch}>
+            <FiSearch style={{ color: "white", marginLeft: "0.4rem" }} />
+            <input
+              placeholder="Search 'Goa' or 'Kerala'..."
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+            />
+            <button type="submit">Search</button>
+          </form>
           <div className="hero-actions">
             <Link to="/packages" className="btn btn-primary">Explore Packages</Link>
             {user ? (
@@ -51,6 +75,13 @@ export default function Home() {
         <div className="stat-card"><div className="stat-number">500+</div><div className="stat-label">Happy Travellers</div></div>
         <div className="stat-card"><div className="stat-number">4.8★</div><div className="stat-label">Average Rating</div></div>
         <div className="stat-card"><div className="stat-number">24/7</div><div className="stat-label">Trip Support</div></div>
+      </div>
+
+      <div className="trust-strip">
+        <div className="trust-item"><FiLock /> Secure Checkout</div>
+        <div className="trust-item"><FiCheckCircle /> Verified Packages</div>
+        <div className="trust-item"><FiRefreshCw /> Easy Cancellation</div>
+        <div className="trust-item"><FiHeadphones /> Real Human Support</div>
       </div>
 
       <section className="section">
@@ -78,6 +109,19 @@ export default function Home() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="section-heading">
+          <h2>How It Works</h2>
+          <p>From browsing to boarding, in four steps.</p>
+        </div>
+        <div className="steps-grid">
+          <div className="step-card"><div className="step-number">1</div><h4>Browse</h4><p>Explore packages by destination, budget, and dates.</p></div>
+          <div className="step-card"><div className="step-number">2</div><h4>Book</h4><p>Pick your date and traveller count — see the full price upfront.</p></div>
+          <div className="step-card"><div className="step-number">3</div><h4>Pay</h4><p>Secure checkout with instant confirmation and a receipt.</p></div>
+          <div className="step-card"><div className="step-number">4</div><h4>Travel</h4><p>Get trip updates in real time and leave a review after.</p></div>
         </div>
       </section>
 
@@ -119,6 +163,15 @@ export default function Home() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="section narrow">
+        <div className="section-heading">
+          <h2>Frequently Asked Questions</h2>
+        </div>
+        <div className="faq-list">
+          {FAQS.map((f) => <FaqItem key={f.q} question={f.q} answer={f.a} />)}
         </div>
       </section>
 
